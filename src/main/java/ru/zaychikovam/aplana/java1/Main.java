@@ -1,4 +1,4 @@
-package ru.zaychikovam.aplana.java1;
+package main.java.ru.zaychikovam.aplana.java1;
 
 import java.io.*;
 import java.text.NumberFormat;
@@ -7,36 +7,36 @@ import java.util.Locale;
 public class Main {
 
     public static void main(String[] args) {
-        //Задача №3
-        task3();
-        //Задача №4
-        task4();
-        //Задача №5
-        task5();
-        //Задача №6
-        task6();
-        //Задача №7
-        task7();
-        //Задача №8
-        task8();
-        //Задача №9
-        task9();
-        //Задача №10
-        task10();
-        //Задача №11
-        task11();
-        //Задача №12
-        task12();
-        //Задача №13
-        task13();
-        //Задача №14
-        task14();
-        //Задача №15
-        task15();
-        //Задача №16
-        task16();
-        //Задача №17
-        task17();
+//        //Задача №3
+//        task3();
+//        //Задача №4
+//        task4();
+//        //Задача №5
+//        task5();
+//        //Задача №6
+//        task6();
+//        //Задача №7
+//        task7();
+//        //Задача №8
+//        task8();
+//        //Задача №9
+//        task9();
+//        //Задача №10
+//        task10();
+//        //Задача №11
+//        task11();
+//        //Задача №12
+//        task12();
+//        //Задача №13
+//        task13();
+//        //Задача №14
+//        task14();
+//        //Задача №15
+//        task15();
+//        //Задача №16
+//        task16();
+//        //Задача №17
+//        task17();
         //Задача №18
         task18();
     }
@@ -280,13 +280,10 @@ public class Main {
         String str2 = readFromConsole();
         System.out.println("Введена вторая строка");
 
-        char[] str1Arr = str1.toCharArray();
-        char[] str2Arr = str2.toCharArray();
-
-        if (str1Arr.length > str2Arr.length) {
+        if (str1.length() > str2.length()) {
             System.out.print("Первая строка длинее: ");
             System.out.println(str1);
-        } else if (str1Arr.length < str2Arr.length) {
+        } else if (str1.length() < str2.length()) {
             System.out.print("Вторая строка длинее: ");
             System.out.println(str2);
         } else {
@@ -433,11 +430,13 @@ public class Main {
             br.close();
             FileOutputStream fos = new FileOutputStream(path);
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
-            System.out.println("Чтобы записать в файл, введите текст");
-            strLine = readFromConsole();
-            System.out.println("Вы ввели: " + strLine + "\nПишем в файл");
+            System.out.println("Чтобы записать в файл "  + strCount + " раз(а), введите текст");
+            int count = strCount;
             for (int i = 0; i < strCount; i++) {
+                strLine = readFromConsole();
+                System.out.println("Вы ввели: " + strLine + "\nПишем в файл, осталось " + (count -1) + " строк");
                 bw.write(strLine + "\r\n");
+                count--;
             }
             bw.close();
         }
