@@ -37,8 +37,14 @@ public class Main {
 //        task16();
 //        //Задача №17
 //        task17();
-        //Задача №18
-        task18();
+//        // Задача №18
+ //       task18();
+        // Итоговая задача №2
+        taskResult2();
+
+//        // Итоговая задача №3
+//        taskResult3();
+
     }
 
     /**
@@ -476,18 +482,80 @@ public class Main {
             }
         }
     }
+
     /** Итоговая задача №2
      * Написать программу сортировки по возрастанию заданного пользователем массива чисел.
      * Пользователь программы должен задавать размер массива и наполнять его числами.
      * Использовать одну из следующих сортировок: прямого выбора, вставки, быстрая, Шелла.
      */
+    public static void taskResult2() {
+        int x = 0;
+        int array[];
+        boolean isArrayCreate = false;
+        System.out.println("Введите необходимое кол-во элементов массива");
+        while (!isArrayCreate) {
+            try {
+                x = Integer.parseInt(readFromConsole());
+                isArrayCreate = true;
+            } catch (NumberFormatException e) {
+                System.out.println("Вы ввели не число");
+            }
+        }
+        array = new int[x];
 
-    /**
-     * Итоговая задача №3
+        for (int i = 0; i < array.length; i++) {
+            System.out.println("Введите значение элемента №" + (i + 1));
+            try {
+                array[i] = Integer.parseInt(readFromConsole());
+            } catch (NumberFormatException e) {
+                System.out.println("Вы ввели не число");
+                i--;
+            }
+        }
+
+        int i, j, step;
+        int tmp;
+        for (step = array.length / 2; step > 0; step /= 2)
+            for (i = step; i < array.length; i++)  {
+                tmp = array[i];
+                for (j = i; j >= step; j -= step)  {
+                    if (tmp < array[j - step])
+                        array[j] = array[j - step];
+                    else
+                        break;
+                }
+             array[j] = tmp;
+        }
+
+        for (int c = 0; c < array.length; c++) {
+            System.out.print(array[c] + "; " );
+        }
+
+    }
+
+    /** Итоговая задача №3
      * Напишите программу конвертер валют. Программа должна переводить рубли в доллары по текущему курсу.
      * Пользователь вводит текущий курс и количество рублей. Итоговое значение должно быть округлено до двух знаков после запятой.
      * (Пример для теста работы программы: Курс доллара = 67,55, Количество рублей: 1000, Итого: 14,80 долларов)
      */
+    public static void taskResult3() {
+        System.out.println("Введите сумму в рублях");
+        double courseRubOfDollars = 67.55;
+        double dollars = 0;
+        boolean isNumeric = false;
+        while(!isNumeric) {
+            try {
+                String str = readFromConsole();
+                double rubles = Double.parseDouble(str);
+                dollars = rubles/courseRubOfDollars;
+                isNumeric = true;
+            } catch (NumberFormatException ex) {
+                System.out.println("Вы ввели неправильную сумму, попробуйте еще раз");
+            }
+
+        }
+        System.out.printf("%.2f", dollars);
+    }
 
     public static String readFromConsole() {
         String result = null;
