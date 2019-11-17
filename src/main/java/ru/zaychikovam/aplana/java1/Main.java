@@ -7,43 +7,44 @@ import java.util.Locale;
 public class Main {
 
     public static void main(String[] args) {
-//        //Задача №3
-//        task3();
-//        //Задача №4
-//        task4();
-//        //Задача №5
-//        task5();
-//        //Задача №6
-//        task6();
-//        //Задача №7
-//        task7();
-//        //Задача №8
-//        task8();
-//        //Задача №9
-//        task9();
-//        //Задача №10
-//        task10();
-//        //Задача №11
-//        task11();
-//        //Задача №12
-//        task12();
-//        //Задача №13
-//        task13();
-//        //Задача №14
-//        task14();
-//        //Задача №15
-//        task15();
-//        //Задача №16
-//        task16();
-//        //Задача №17
-//        task17();
-//        // Задача №18
- //       task18();
+        //Задача №3
+        task3();
+        //Задача №4
+        task4();
+        //Задача №5
+        task5();
+        //Задача №6
+        task6();
+        //Задача №7
+        task7();
+        //Задача №8
+        task8();
+        //Задача №9
+        task9();
+        //Задача №10
+        task10();
+        //Задача №11
+        task11();
+        //Задача №12
+        task12();
+        //Задача №13
+        task13();
+        //Задача №14
+        task14();
+        //Задача №15
+        task15();
+        //Задача №16
+        task16();
+        //Задача №17
+        task17();
+        // Задача №18
+       task18();
+       //Итоговая задача №1
+        taskResult1();
         // Итоговая задача №2
         taskResult2();
-
-//        // Итоговая задача №3
-//        taskResult3();
+        // Итоговая задача №3
+        taskResult3();
 
     }
 
@@ -72,6 +73,7 @@ public class Main {
                         isBinary = true;
                     } else {
                         isBinary = false;
+                        throw new NumberFormatException();
                     }
                 }
                 if (isBinary) {
@@ -420,7 +422,6 @@ public class Main {
      * а потом в этот же файл перезаписывать текстовые данные, введенные вручную.
      * Количество строк после перезаписи должно быть столько же, сколько и в изначальном варианте.
      */
-
     public static void task18() {
         String path = "src/main/resources/read-write.txt";
         int strCount = 0;
@@ -456,20 +457,21 @@ public class Main {
      * Необходимо использовать циклы, нельзя использования готовые методы языка Java,
      * для перевода числа из одной системы счисления в другую.
      */
-
     public static void taskResult1() {
         boolean isBinary = false;
         String read = null;
+        char[] readChar = null;
         System.out.println("Введите бинарное число");
         while (!isBinary) {
             try {
                 read = readFromConsole();
-                char[] readChar = read.toCharArray();
+                readChar = read.toCharArray();
                 for (int i = 0; i < readChar.length; i++) {
                     if ((readChar[i] == '0') || (readChar[i] == '1')) {
                         isBinary = true;
                     } else {
                         isBinary = false;
+                        throw new NumberFormatException();
                     }
                 }
                 if (isBinary) {
@@ -481,6 +483,8 @@ public class Main {
                 System.out.println("Можно ввести только 0 и 1, ну бинарное же число все таки");
             }
         }
+
+        System.out.println(BinToDec(read));
     }
 
     /** Итоговая задача №2
@@ -566,6 +570,27 @@ public class Main {
             System.out.println(e);
         }
         return result;
+    }
+
+    public static int pow(int a, int b) {
+        int result = 1;
+        for (int i = 0; i < b; i++) {
+            result *= a;
+        }
+        return result;
+    }
+
+    public static int BinToDec(String bin){
+        int res = 0, a = 0, mult = 0;
+        char[] symbols = bin.toCharArray();
+        for(int len = symbols.length-1; len >= 0; len--){
+            int temp = 0;
+            a = Character.getNumericValue(symbols[len]);
+            temp = a * pow(2, mult);
+            mult++;
+            res += temp;
+        }
+        return res;
     }
 }
 
