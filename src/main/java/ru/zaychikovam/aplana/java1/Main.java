@@ -543,22 +543,37 @@ public class Main {
      * (Пример для теста работы программы: Курс доллара = 67,55, Количество рублей: 1000, Итого: 14,80 долларов)
      */
     public static void taskResult3() {
-        System.out.println("Введите сумму в рублях");
-        double courseRubOfDollars = 67.55;
+        double course = 0;
+        double rubles = 0;
         double dollars = 0;
-        boolean isNumeric = false;
-        while(!isNumeric) {
+        boolean isNumericRub = false;
+        boolean isNumericCourse = false;
+        System.out.println("Введите сумму в рублях");
+        while(!isNumericRub) {
             try {
                 String str = readFromConsole();
-                double rubles = Double.parseDouble(str);
-                dollars = rubles/courseRubOfDollars;
-                isNumeric = true;
+                if(str.contains(",")) { str = str.replace(",", "."); }
+                rubles = Double.parseDouble(str);
+                isNumericRub = true;
             } catch (NumberFormatException ex) {
                 System.out.println("Вы ввели неправильную сумму, попробуйте еще раз");
             }
-
         }
+        System.out.println("Введите курс доллара");
+        while(!isNumericCourse) {
+            try {
+                String str = readFromConsole();
+                if(str.contains(",")) { str = str.replace(",", "."); }
+                course = Double.parseDouble(str);
+                isNumericCourse = true;
+            } catch (NumberFormatException ex) {
+                System.out.println("Вы ввели некорректный курс, попробуйте еще раз");
+            }
+        }
+        dollars = rubles/course;
+        System.out.print("На " + rubles + " вы можете купить ");
         System.out.printf("%.2f", dollars);
+        System.out.print(" долларов");
     }
 
     public static String readFromConsole() {
